@@ -32,10 +32,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <main>
     <Header/>
+    <main className='bg-zinc-50'>
     <RouterProvider router={router}/>
-    <Footer/>
     </main>
+    <Footer/>
   </React.StrictMode>,
 )
