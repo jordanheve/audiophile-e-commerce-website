@@ -5,7 +5,7 @@ import instagramLogo from "/assets/shared/desktop/icon-instagram.svg";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="bg-zinc-950 px-6 py-8 flex items-center flex-col gap-8 text-center text-sm">
+    <footer className="bg-zinc-950 px-6 py-8 flex items-center flex-col gap-8 text-center text-sm mt-28">
        <img src={headerLogo} alt="audiophile" />
 
        <ul className="uppercase text-zinc-100  font-semibold flex flex-col gap-3">

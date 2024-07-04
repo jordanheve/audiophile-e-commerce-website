@@ -10,7 +10,7 @@ export default function SeeProductoBtn({ color = 'default' }: SeeProductoBtnProp
   };
 
   return (
-    <button className={`${className[color]} font-bold w-fit px-6 py-3`}>
+    <button className={`${className[color]} font-semibold w-fit px-6 py-3`}>
       SEE PRODUCT
     </button>
   )

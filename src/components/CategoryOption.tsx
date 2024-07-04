@@ -19,7 +19,7 @@ return (
           <ChevronRightIcon className="h-6 w-6 text-custom-orange" />
           </a>
       </div>
-      <div className="absolute bg-zinc-100 rounded-xl h-40  z-0 bottom-0 left-4 right-4"></div>
+      <div className="absolute bg-zinc-100 rounded-lg h-40  z-0 bottom-0 w-full"></div>
   </div>
   )
 }
