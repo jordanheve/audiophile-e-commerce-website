@@ -19,7 +19,8 @@ export default function ProductCategory({ product }: ProductCategoryProps) {
 
             <h3 className='font-semibold text-xl'>{product.name}</h3>
             <p className='text-sm text-zinc-500'>{product.description}</p>
-           <SeeProductBtn slug={product.slug}/>
+            
+           <SeeProductBtn slug={'/product/'+product.slug}/>
     </div>
   )
 }
