@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   errorElement: <NotFound />
   },
   {
-    path: '/category',
+    path: '/category/:category',
     element: <Category />
   },
   {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Header/>
-    <main className='bg-white'>
+    <main className='bg-white font-manrope'>
     <RouterProvider router={router}/>
     </main>
     <Footer/>

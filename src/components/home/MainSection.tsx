@@ -1,4 +1,4 @@
-import SeeProductoBtn from "../SeeProductoBtn";
+import SeeProductBtn from "../SeeProductBtn";
 
 export default function MainSection() {
   return (
@@ -17,7 +17,7 @@ export default function MainSection() {
                 <p className="text-zinc-400 w-80">
                 Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
                 </p>
-                <SeeProductoBtn />
+                <SeeProductBtn />
             </div>
         </div>
         

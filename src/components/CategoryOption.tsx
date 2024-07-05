@@ -4,6 +4,7 @@ type CategoryOptionProps = {
   categoryUrl: string;
   imageUrl: string;
 }
+import { Link } from "react-router-dom";
 export default function CategoryOption({categoryName, categoryUrl, imageUrl}  : CategoryOptionProps) {
 return (
   <div className="h-56 mt-4 p-4 flex relative  justify-between flex-col items-center ">
@@ -14,10 +15,10 @@ return (
           className="h-28"
           />
       <h4 className="font-semibold ">{categoryName}</h4>
-        <a className="font-semibold text-sm text-zinc-500 flex gap-1 justify-center items-center" href={categoryUrl}>
-          <span >Shop</span>
+        <Link className="font-semibold text-sm text-zinc-500 flex gap-1 justify-center items-center" to={'/category/'+categoryUrl}>
+          <span className="hover:text-custom-orange">Shop</span>
           <ChevronRightIcon className="h-6 w-6 text-custom-orange" />
-          </a>
+        </Link>
       </div>
       <div className="absolute bg-zinc-100 rounded-lg h-40  z-0 bottom-0 w-full"></div>
   </div>

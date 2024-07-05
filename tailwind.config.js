@@ -8,7 +8,10 @@ export default {
     extend: {
       colors: {
         'custom-orange': '#D87D4A'
-      }
+      },
+      fontFamily: {
+        'manrope': ['Manrope'],
+      },
     },
   },
   plugins: [],

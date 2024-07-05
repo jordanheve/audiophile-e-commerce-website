@@ -1,9 +1,9 @@
 import bestGearImg from '/assets/shared/desktop/image-best-gear.jpg';
 export default function BestGearDescription() {
   return (
-    <section className=' text-center flex flex-col gap-6' >
-        <div >
-        <img src={bestGearImg} alt="a guy wearing headphones" className='rounded-lg w-full h-full object-cover aspect-square '/>
+    <section className=' text-center flex flex-col gap-6 ' >
+        <div>
+        <img src={bestGearImg} alt="a guy wearing headphones" className='rounded-lg w-full object-cover aspect-square h-80'/>
         </div>
         <h3 className="uppercase text-zinc-950 font-semibold text-3xl">
         Bringing you the  <br />

@@ -1,8 +1,9 @@
-import SeeProductoBtn from "../SeeProductoBtn";
+
 import speakerZx9 from "/assets/home/desktop/image-speaker-zx9.png";
 import patternCircles from "/assets/home/desktop/pattern-circles.svg";
 import mobileSpeakerZx7 from "/assets/home/mobile/image-speaker-zx7.jpg";
 import mobileEarphonesYx1 from "/assets/home/mobile/image-earphones-yx1.jpg" ; 
+import SeeProductBtn from "../SeeProductBtn";
 export default function ProductoShowcase() {
   return (
     <section className="flex flex-col gap-4">
@@ -14,7 +15,7 @@ export default function ProductoShowcase() {
     <div className="relative z-10  flex flex-col gap-6 mt-8 items-center mx-auto text-white max-w-xs">
       <h4 className="text-3xl font-semibold ">ZX9 <br /> SPEAKER</h4>
       <p>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
-      <SeeProductoBtn color="black" />
+      <SeeProductBtn color="black" />
     </div>
   </div>
 
@@ -22,7 +23,7 @@ export default function ProductoShowcase() {
     <img className="object-cover absolute " src={mobileSpeakerZx7} alt="ZX7 speaker image on mobile" />
     <div className="z-10 relative ml-4">
     <h4 className="text-3xl font-semibold mb-10">ZX7 SPEAKER</h4>
-    <SeeProductoBtn color="white" />
+    <SeeProductBtn color="white" />
     </div>
   </div>
 
@@ -33,7 +34,7 @@ export default function ProductoShowcase() {
 
     <div className="mt-4 w-full bg-zinc-100 rounded-lg h-52 flex flex-col justify-center p-4 gap-8">
     <h4 className="text-3xl font-semibold">YX1 EARPHONES</h4>
-    <SeeProductoBtn color="white" />
+    <SeeProductBtn color="white" />
     </div>
   </div>
 </section>
