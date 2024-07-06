@@ -1,9 +1,26 @@
 import { Bars3Icon } from "@heroicons/react/24/outline"
+import { Dialog, DialogBackdrop, DialogPanel} from '@headlessui/react'
+import CategoryOptions from "../CategoryOptions"
+import { usePurchase } from "../hooks/usePurchase"
+
 export default function MenuCategories() {
+  const {state,  dispatch} = usePurchase();
   return (
-    <div>
-        <Bars3Icon className="h-6 w-6 text-white" />
-      
-    </div>
+    <>
+      <button onClick={() => dispatch({type: 'open-menu'})}><Bars3Icon className="h-6 w-6 text-white" /></button>
+      <Dialog open={state.menuOpen} onClose={() => dispatch({type: 'close-menu'})} className="relative z-50">
+        {/* The backdrop, rendered as a fixed sibling to the panel container */}
+        <DialogBackdrop className="fixed inset-0 bg-black/30" />
+
+        {/* Full-screen container to center the panel */}
+        <div className="fixed inset-0 top-24">
+          {/* The actual dialog panel  */}
+          <DialogPanel className="max-w-lg space-y-4 bg-white p-8">
+            <CategoryOptions />
+          </DialogPanel>
+        </div>
+      </Dialog>
+    </>
+
   )
 }
