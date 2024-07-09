@@ -4,6 +4,7 @@ import { formatCurrency } from "../../helpers";
 import { useState } from "react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 
+import { usePurchase } from "../hooks/usePurchase";
 
 
 type ProductInfoProps = {
@@ -11,7 +12,7 @@ type ProductInfoProps = {
 }
 
 export default function ProductInfo( { product} : ProductInfoProps ) {
-
+    const {dispatch} = usePurchase();
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
     const decrease = () => {
@@ -76,7 +77,7 @@ export default function ProductInfo( { product} : ProductInfoProps ) {
               <PlusIcon className="h-2 w-2 text-zinc-600 " />
             </button>
           </div>
-          <button className="bg-custom-orange text-white py-3 px-8 font-semibold uppercase text-xs  tracking-wider ">
+          <button className="bg-custom-orange text-white py-3 px-8 font-semibold uppercase text-xs  tracking-wider " onClick={()=> dispatch({type:'add-to-cart', payload: {product, quantity}})}>
             Add to Cart
           </button>
         </div>
