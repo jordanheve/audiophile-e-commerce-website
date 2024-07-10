@@ -70,11 +70,11 @@ export default function ProductInfo( { product} : ProductInfoProps ) {
         <div className="flex gap-4">
           <div className="flex items-center bg-zinc-100">
             <button onClick={decrease} className="p-4 hover:bg-zinc-200">
-              <MinusIcon className="h-2 w-2 text-zinc-600" />
+              <MinusIcon className="h-3 w-3 text-zinc-600" />
             </button>
-            <span className="text-xs px-2">{quantity}</span>
+            <span className="text-sm px-2 font-semibold">{quantity}</span>
             <button onClick={increase} className="p-4  hover:bg-zinc-200">
-              <PlusIcon className="h-2 w-2 text-zinc-600 " />
+              <PlusIcon className="h-3 w-3 text-zinc-600 " />
             </button>
           </div>
           <button className="bg-custom-orange text-white py-3 px-8 font-semibold uppercase text-xs  tracking-wider " onClick={()=> dispatch({type:'add-to-cart', payload: {product, quantity}})}>

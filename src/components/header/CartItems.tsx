@@ -2,6 +2,7 @@ import type { CartProduct } from '../../types'
 import { formatCurrency } from '../../helpers'
 import { usePurchase } from '../hooks/usePurchase'
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { useMemo } from 'react';
 type CartItemsProps = 
 {
   item: CartProduct
@@ -9,26 +10,32 @@ type CartItemsProps =
 
 export default function CartItems({item} : CartItemsProps) {
     const {dispatch} = usePurchase();
+    
+    const productName = useMemo(() =>{ 
+      const wordsToRemove = ["Earphones", "Speaker", "Headphones"];
+      const regex = new RegExp(`\\b(${wordsToRemove.join('|')})\\b`, 'gi');
+      return item.name.replace(regex, '').replace(/\s{2,}/g, ' ').trim();
+    }, [item.name])
   return (
     <div className='flex justify-between items-center'>
         <div className='flex gap-4'>
             <div className='h-16 w-16'>
-            <img src={item.image.mobile} alt={item.name} />
+            <img className='rounded' src={item.image.mobile} alt={item.name} />
             </div>
             <div className='flex justify-center flex-col'>
-                <p className='font-semibold'>{item.name}</p>
-                <p>{formatCurrency(item.price)}</p>
+                <p className='font-semibold'>{productName}</p>
+                <p className='text-zinc-500 text-sm font-semibold mt-1'>{formatCurrency(item.price)}</p>
             </div>
         </div>
-        <div className='bg-zinc-100'>
-            <button onClick={() => dispatch({type: 'decrease-quantity', payload: {id: item.id}})} className=' p-2  hover:bg-zinc-200'>
-            <MinusIcon className="h-2 w-2 text-zinc-600" />
+        <div className='bg-zinc-100 flex items-center'>
+            <button onClick={() => dispatch({type: 'decrease-quantity', payload: {id: item.id}})} className=' p-3  hover:bg-zinc-200'>
+            <MinusIcon className="h-3 w-3 text-zinc-600" />
             </button>
-            <span  className="text-xs px-2">
+            <span  className="text-sm px-2 font-semibold">
                 {item.quantity}
             </span>
-            <button onClick={()=> dispatch({type: 'increase-quantity', payload: {id: item.id}})} className=' p-2  hover:bg-zinc-200'>
-            <PlusIcon className="h-2 w-2 text-zinc-600 " />
+            <button onClick={()=> dispatch({type: 'increase-quantity', payload: {id: item.id}})} className=' p-3 hover:bg-zinc-200'>
+            <PlusIcon className="h-3 w-3 text-zinc-600 " />
             </button>
         </div>    
     </div>

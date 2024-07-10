@@ -36,13 +36,14 @@ export const purchaseReducer = ( state: PurchaseState = initialState,  actions: 
 
         case 'add-to-cart':{
             const existingItem = state.cart.find(item => item.id === actions.payload.product.id)
+            const quantity = actions.payload.quantity
             if(existingItem){
                 return {
                     ...state,
-                    cart: state.cart.map(item => item.id === actions.payload.product.id? {...item, quantity: item.quantity + 1}: item)
+                    cart: state.cart.map(item => item.id === actions.payload.product.id? {...item, quantity: item.quantity + quantity}: item)
                 }
             }
-            return {...state, cart: [...state.cart, {...actions.payload.product, quantity: 1 }] }
+            return {...state, cart: [...state.cart, {...actions.payload.product, quantity }] }
         }
         case 'remove-from-cart':
             return {...state, cart: state.cart.filter(item => item.id!== actions.payload.id) }
