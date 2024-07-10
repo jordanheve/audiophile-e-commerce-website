@@ -1,5 +1,6 @@
 import { CartProduct, Product } from "../types";
 
+
 export type PurchaseActions = 
 {type: 'close-menu' } |
 { type: 'open-menu' } |
@@ -54,7 +55,7 @@ export const purchaseReducer = ( state: PurchaseState = initialState,  actions: 
         case 'clear-cart':
             return {...state, cart: [] }
 
-        // case 'apply-coupon':
+
 
         default:
             return state

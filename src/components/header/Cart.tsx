@@ -4,9 +4,15 @@ import { formatCurrency } from '../../helpers'
 import { usePurchase } from "../hooks/usePurchase"
 import CartItems from "./CartItems";
 import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Cart() {
   const {state,  dispatch, totalPurchase} = usePurchase();
   const isEmpty = useMemo( () => state.cart.length === 0, [state.cart]);
+  const navigate = useNavigate();
+  const handleCheckout = () => {
+    dispatch({type: 'close-cart'})
+    navigate('/checkout');
+  }
   return (
     <div>
       <button onClick={() => dispatch({type: 'open-cart'})}><ShoppingCartIcon className="h-6 w-6 text-white" /></button>
@@ -38,7 +44,10 @@ export default function Cart() {
               {formatCurrency(totalPurchase)}
             </span>
             </div>
-            <button className="uppercase w-full bg-custom-orange text-white py-3 tracking-wider text-sm">Checkout</button>
+
+            <button onClick={handleCheckout} className="uppercase w-full bg-custom-orange text-white py-3 tracking-wider text-sm">
+              Checkout
+              </button>
               </>
             )}
             
