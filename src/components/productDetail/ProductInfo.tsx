@@ -1,10 +1,10 @@
 import { Product } from "../../types";
-import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../helpers";
 import { useState } from "react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 import { usePurchase } from "../hooks/usePurchase";
+import GoBack from "../GoBack";
 
 
 type ProductInfoProps = {
@@ -14,7 +14,6 @@ type ProductInfoProps = {
 export default function ProductInfo( { product} : ProductInfoProps ) {
     const {dispatch} = usePurchase();
     const [quantity, setQuantity] = useState(1);
-    const navigate = useNavigate();
     const decrease = () => {
     if (quantity > 1) {
         setQuantity(quantity - 1);
@@ -42,12 +41,7 @@ export default function ProductInfo( { product} : ProductInfoProps ) {
       : ["", ""];
   return (
     <section className="pt-28 flex flex-col text-left gap-6">
-        <button
-          onClick={() => navigate(-1)}
-          className="self-start text-zinc-500 hover:bg-zinc-100 p-1"
-        >
-          Go Back
-        </button>
+        <GoBack/>
         <div className="rounded-lg overflow-hidden">
           <img
             className="object-cover w-full h-full max-h-96"

@@ -50,8 +50,6 @@ export default function Cart() {
               </button>
               </>
             )}
-            
-
           
           </DialogPanel>
         </div>
