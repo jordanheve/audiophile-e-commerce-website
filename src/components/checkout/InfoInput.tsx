@@ -5,9 +5,10 @@ type InputInfoProps = {
     id: string
     placeholder: string
     caseType? : string
+    type?: string
 }
 
-export default function InfoInput( {label, id, placeholder, caseType = 'text'} : InputInfoProps) {
+export default function InfoInput( {label, id, placeholder, caseType = 'text', type = "text"} : InputInfoProps) {
     const [inputValue, setInputValue] = useState('');
 
     const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,13 +23,13 @@ export default function InfoInput( {label, id, placeholder, caseType = 'text'} :
     const isNumeric :boolean = caseType == 'numeric';
     return (
     <div className="flex flex-col">
-            <label htmlFor="name" className="text-sm font-bold mb-1">
+            <label htmlFor={id} className="text-sm font-bold mb-1">
               {label}
             </label>
             <input
               onChange={isNumeric ? handleChangeNumber : handleChange}
               id={id}
-              type="text"
+              type={type}
               placeholder={placeholder}
               className='border p-3 rounded outline-none'
               value={inputValue}
