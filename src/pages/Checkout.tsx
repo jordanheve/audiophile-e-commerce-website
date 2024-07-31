@@ -1,4 +1,5 @@
 import InfoInput from "../components/checkout/InfoInput";
+import InfoRadio from "../components/checkout/InfoRadio";
 import GoBack from "../components/GoBack";
 
 export default function Checkout() {
@@ -28,18 +29,9 @@ export default function Checkout() {
           </h4>
           <fieldset className="flex flex-col gap-2">
           <legend className="font-semibold mb-2">Payment Method</legend>
-          <label htmlFor="eMoney" className="flex gap-4 p-3 border rounded-md font-semibold">
-            <input type="radio" id="eMoney" name="payment" checked />
-            <span>
-            e-Money
-            </span>
-          </label>
-          <label htmlFor="cash" className="flex gap-4 p-3 border rounded-md font-semibold">
-            <input type="radio" id="cash" name="payment"/>
-            <span>
-            Cash on Delivery
-            </span>
-          </label>
+          <InfoRadio id="eMoney" name="payment" label="e-Money" />
+          <InfoRadio id="cash" name="payment" label="Cash on Delivery" />
+
           </fieldset>
         </div>
         

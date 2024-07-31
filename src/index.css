@@ -6,3 +6,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .checkbox-label:has(input:checked) {
+      @apply border-custom-orange;
+    }
+  }
