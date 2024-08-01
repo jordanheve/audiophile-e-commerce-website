@@ -6,9 +6,10 @@ import { useMemo } from 'react';
 type CartItemsProps = 
 {
   item: CartProduct
+  justshow?: boolean
 }
 
-export default function CartItems({item} : CartItemsProps) {
+export default function CartItems({item, justshow = false} : CartItemsProps) {
     const {dispatch} = usePurchase();
     
     const productName = useMemo(() =>{ 
@@ -27,7 +28,11 @@ export default function CartItems({item} : CartItemsProps) {
                 <p className='text-zinc-500 text-sm font-semibold mt-1'>{formatCurrency(item.price)}</p>
             </div>
         </div>
-        <div className='bg-zinc-100 flex items-center'>
+        { justshow ? (
+          <span className='text-sm font-semibold text-zinc-600'>x{item.quantity}</span>
+        ) :
+          (
+            <div className='bg-zinc-100 flex items-center'>
             <button onClick={() => dispatch({type: 'decrease-quantity', payload: {id: item.id}})} className=' p-3  hover:bg-zinc-200'>
             <MinusIcon className="h-3 w-3 text-zinc-600" />
             </button>
@@ -38,6 +43,8 @@ export default function CartItems({item} : CartItemsProps) {
             <PlusIcon className="h-3 w-3 text-zinc-600 " />
             </button>
         </div>    
+          )
+        }
     </div>
   )
 }

@@ -1,8 +1,13 @@
 import InfoInput from "../components/checkout/InfoInput";
 import InfoRadio from "../components/checkout/InfoRadio";
 import GoBack from "../components/GoBack";
-
+import { useState } from "react";
 export default function Checkout() {
+
+  const [selectedPayment, setSelectedPayment] = useState('eMoney');
+  
+  
+
   return (
     <div className="p-4 pt-28 bg-zinc-50 flex flex-col gap-4">
       <GoBack />
@@ -29,12 +34,22 @@ export default function Checkout() {
           </h4>
           <fieldset className="flex flex-col gap-2">
           <legend className="font-semibold mb-2">Payment Method</legend>
-          <InfoRadio id="eMoney" name="payment" label="e-Money" />
-          <InfoRadio id="cash" name="payment" label="Cash on Delivery" />
+          <InfoRadio id="eMoney" name="payment" label="e-Money" defaultChecked={true} setPaymentId={setSelectedPayment}/>
+          <InfoRadio id="cash" name="payment" label="Cash on Delivery" setPaymentId={setSelectedPayment} />
+
+          {selectedPayment == 'eMoney' && (
+            <div className="mt-4 flex flex-col gap-2" id="moneyInfo">
+          <InfoInput label="e-Money Number"  id="eMoneyNumber" placeholder="238521993" />
+          <InfoInput label="e-Money Pin"  id="eMoneyPin" placeholder="6891" />
+          </div>
+            )
+          }
 
           </fieldset>
         </div>
         
+          
+
       </form>
     </div>
   );
