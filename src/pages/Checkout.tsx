@@ -1,17 +1,33 @@
 import InfoInput from "../components/checkout/InfoInput";
 import InfoRadio from "../components/checkout/InfoRadio";
 import GoBack from "../components/GoBack";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { usePurchase } from "../components/hooks/usePurchase";
+import CartItems from "../components/header/CartItems";
+import { formatCurrency } from "../helpers";
 export default function Checkout() {
 
   const [selectedPayment, setSelectedPayment] = useState('eMoney');
-  
-  
+  const {state, dispatch, totalPurchase, shipping, vat, grandTotal} = usePurchase();
+  const isEmpty = useMemo(() => state.cart.length == 0, [state.cart])
+  const initialState = {
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    zip: "",
+    eMoneyNumber: "",
+    eMoneyPin: ""
+    
+  }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
 
   return (
-    <div className="p-4 pt-28 bg-zinc-50 flex flex-col gap-4">
+    <div >
+      <form action="" onSubmit={handleSubmit} className="p-4 pt-28 bg-zinc-50 flex flex-col gap-4">
       <GoBack />
-      <form action="">
         <div className="bg-white flex flex-col gap-4 p-4 rounded-xl">
           <h2 className="uppercase font-semibold text-3xl mb-2">Checkout</h2>
           <h4 className="text-custom-orange font-semibold uppercase text-md mt-2">
@@ -47,9 +63,43 @@ export default function Checkout() {
 
           </fieldset>
         </div>
+        <div className="bg-white flex flex-col gap-4 p-4 rounded-xl">
+        <h2 className="uppercase font-semibold text-xl mb-2">Summary</h2>
+        <div className="mb-6 flex flex-col gap-4">
+        {isEmpty ? (
+              <div>
+              <p className="text-center text-xl py-10 font-semibold">There are no items in your cart</p>
+              </div>
+            ) : (
+            <>
+             { state.cart.map(item => (
+             <CartItems key={item.id} item={item} justshow={true}/>
+            )) }
+            </>
+            )}
+        </div>
+        <div className="flex justify-between leading-3">
+          <span className="uppercase text-zinc-500 ">Total</span>
+          <span className="font-semibold">{formatCurrency(totalPurchase)}</span>
+        </div>
+        <div className="flex justify-between leading-3">
+          <span className="uppercase text-zinc-500">shipping</span>
+          <span className="font-semibold">{formatCurrency(shipping)}</span>
+        </div>
+        <div className="flex justify-between leading-3">
+          <span className="uppercase text-zinc-500">Vat (included)</span>
+          <span className="font-semibold">{formatCurrency(vat)}</span>
+        </div>
+        <div className="flex justify-between mt-2">
+          <span className="uppercase text-zinc-500">Total</span>
+          <span className="font-semibold text-custom-orange">{formatCurrency(grandTotal)}</span>
+        </div>
         
-          
-
+              <button type="submit" className="uppercase w-full bg-custom-orange text-white py-3 tracking-wider text-sm">
+              Continue & Pay
+              </button>
+        </div>
+        
       </form>
     </div>
   );
