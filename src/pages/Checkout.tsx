@@ -1,25 +1,40 @@
 import InfoInput from "../components/checkout/InfoInput";
 import InfoRadio from "../components/checkout/InfoRadio";
 import GoBack from "../components/GoBack";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePurchase } from "../components/hooks/usePurchase";
 import CartItems from "../components/header/CartItems";
 import { formatCurrency } from "../helpers";
+import { FormCheckout } from "../types";
 export default function Checkout() {
 
   const [selectedPayment, setSelectedPayment] = useState('eMoney');
   const {state, dispatch, totalPurchase, shipping, vat, grandTotal} = usePurchase();
   const isEmpty = useMemo(() => state.cart.length == 0, [state.cart])
-  const initialState = {
+  const INITIAL_STATE = {
     name: "",
     email: "",
-    phone: "",
+    phone: 0,
     address: "",
-    zip: "",
-    eMoneyNumber: "",
-    eMoneyPin: ""
-    
+    zip: 0,
+    city: "",
+    country: "",
+    payment: "eMoney",
+    eMoneyNumber: 0,
+    eMoneyPin: 0
   }
+  const [formCheckout, setFormCheckout] = useState<FormCheckout>(INITIAL_STATE);
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target;
+    const isNumeric = ['zip', 'phone', 'eMoneyNumber', 'eMoneyPin'].includes(name);
+    const sanitizedValue = isNumeric ? value.replace(/\D/g, '') : value;
+    setFormCheckout({...formCheckout, [name] : isNumeric ? +sanitizedValue : sanitizedValue })
+  }
+  useEffect( () => {
+    setFormCheckout({...formCheckout, payment: selectedPayment})
+  }, [selectedPayment, formCheckout])
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   }
@@ -33,17 +48,17 @@ export default function Checkout() {
           <h4 className="text-custom-orange font-semibold uppercase text-md mt-2">
             Billing Details
           </h4>
-          <InfoInput label="Name" placeholder="Alexei Ward" id="name"/>
-          <InfoInput label="Email Address" placeholder="alexei@mail.com" id="email" type="email"/>
-          <InfoInput label="Phone Number" placeholder="+1 202-555-0136" id="phone" caseType="numeric"/>
+          <InfoInput label="Name" placeholder="Alexei Ward" id="name" value={formCheckout.name} handleValue={handleChange}/>
+          <InfoInput label="Email Address" placeholder="alexei@mail.com" id="email" type="email" value={formCheckout.email} handleValue={handleChange}/>
+          <InfoInput label="Phone Number" placeholder="+1 202-555-0136" id="phone"  value={formCheckout.phone} handleValue={handleChange}/>
           
           <h4 className="text-custom-orange font-semibold uppercase text-md mt-2">
             Shipping Info
           </h4>
-          <InfoInput label="Your Address" placeholder="1137 Williams Avenue" id="address"/>
-          <InfoInput label="ZIP Code" placeholder="10001" id="zip"/>
-          <InfoInput label="City" placeholder="New York" id="city"/>
-          <InfoInput label="Country" placeholder="United States" id="country"/>
+          <InfoInput label="Your Address" placeholder="1137 Williams Avenue" id="address" value={formCheckout.address} handleValue={handleChange}/>
+          <InfoInput label="ZIP Code" placeholder="10001" id="zip" maxLength={5} value={formCheckout.zip} handleValue={handleChange}/>
+          <InfoInput label="City" placeholder="New York" id="city" value={formCheckout.city} handleValue={handleChange}/>
+          <InfoInput label="Country" placeholder="United States" id="country"  value={formCheckout.country} handleValue={handleChange}/>
 
           <h4 className="text-custom-orange font-semibold uppercase text-md mt-2">
             Payment Details
@@ -55,8 +70,8 @@ export default function Checkout() {
 
           {selectedPayment == 'eMoney' && (
             <div className="mt-4 flex flex-col gap-2" id="moneyInfo">
-          <InfoInput label="e-Money Number"  id="eMoneyNumber" placeholder="238521993" />
-          <InfoInput label="e-Money Pin"  id="eMoneyPin" placeholder="6891" />
+          <InfoInput label="e-Money Number"  id="eMoneyNumber" placeholder="238521993"  value={formCheckout.eMoneyNumber} handleValue={handleChange}/>
+          <InfoInput label="e-Money Pin"  id="eMoneyPin" placeholder="6891" maxLength={4} value={formCheckout.eMoneyPin} handleValue={handleChange}/>
           </div>
             )
           }
@@ -84,7 +99,7 @@ export default function Checkout() {
         </div>
         <div className="flex justify-between leading-3">
           <span className="uppercase text-zinc-500">shipping</span>
-          <span className="font-semibold">{formatCurrency(shipping)}</span>
+          <span className="font-semibold">{formatCurrency(isEmpty ? 0 : shipping)}</span>
         </div>
         <div className="flex justify-between leading-3">
           <span className="uppercase text-zinc-500">Vat (included)</span>
@@ -92,10 +107,10 @@ export default function Checkout() {
         </div>
         <div className="flex justify-between mt-2">
           <span className="uppercase text-zinc-500">Total</span>
-          <span className="font-semibold text-custom-orange">{formatCurrency(grandTotal)}</span>
+          <span className="font-semibold text-custom-orange">{formatCurrency(isEmpty ? 0 : grandTotal)}</span>
         </div>
         
-              <button type="submit" className="uppercase w-full bg-custom-orange text-white py-3 tracking-wider text-sm">
+              <button disabled={isEmpty} type="submit" className=" disabled:opacity-70 uppercase w-full bg-custom-orange text-white py-3 tracking-wider text-sm">
               Continue & Pay
               </button>
         </div>

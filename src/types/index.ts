@@ -52,4 +52,18 @@ export type Product = {
    
 }
 
+export type FormCheckout = {
+    name: string,
+    email: string,
+    phone: number,
+    address: string,
+    zip: number,
+    city: string,
+    country: string,
+    payment: string
+    eMoneyNumber: number,
+    eMoneyPin: number
+    
+}
+
 export type CartProduct = Product & {quantity: number}
