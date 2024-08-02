@@ -6,22 +6,22 @@ type InputInfoProps = {
     placeholder: string
     type?: string
     errorMessage?: string
-    isError?: boolean
+    required?: boolean
     value: string | number
     maxLength?: number
     handleValue: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function InfoInput( {label, id, placeholder, type = "text", errorMessage = "", isError = false, value, handleValue, maxLength = 100} : InputInfoProps) {
+export default function InfoInput( {label, id, placeholder, type = "text", errorMessage = "", value, handleValue, maxLength = 100, required} : InputInfoProps) {
 
 
     return (
     <div className="flex flex-col">
-            <label htmlFor={id} className="text-sm font-bold mb-1">
+            <label htmlFor={id} className="text-sm font-bold mb-1 flex justify-between items-center">
               <span>
               {label}
               </span>
-              <span>
+              <span className="text-xs text-red-500">
                 {errorMessage}
               </span>
             </label>
@@ -33,7 +33,8 @@ export default function InfoInput( {label, id, placeholder, type = "text", error
               name={id}
               maxLength={maxLength}
               placeholder={placeholder}
-              className={isError ? 'border p-3 rounded outline-none border-red-500'   : 'border p-3 rounded outline-none' }
+              required={required}
+              className={errorMessage ? 'border p-3 rounded outline-none border-red-500'   : 'border p-3 rounded outline-none' }
               
             />
     </div>

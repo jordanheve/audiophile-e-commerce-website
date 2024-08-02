@@ -66,4 +66,17 @@ export type FormCheckout = {
     
 }
 
+export type FormErrors = {
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    zip: string;
+    city: string;
+    country: string;
+    eMoneyNumber: string;
+    eMoneyPin: string;
+};
+
+
 export type CartProduct = Product & {quantity: number}

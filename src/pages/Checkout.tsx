@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { usePurchase } from "../components/hooks/usePurchase";
 import CartItems from "../components/header/CartItems";
 import { formatCurrency } from "../helpers";
-import { FormCheckout } from "../types";
+import { FormCheckout, FormErrors } from "../types";
 export default function Checkout() {
 
   const [selectedPayment, setSelectedPayment] = useState('eMoney');
@@ -23,8 +23,19 @@ export default function Checkout() {
     eMoneyNumber: 0,
     eMoneyPin: 0
   }
+  const errors = {
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    zip: "",
+    city: "",
+    country: "",
+    eMoneyNumber: "",
+    eMoneyPin: ""
+  }
   const [formCheckout, setFormCheckout] = useState<FormCheckout>(INITIAL_STATE);
-  
+  const [formErrors, setFormErrors] = useState(errors)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
     const isNumeric = ['zip', 'phone', 'eMoneyNumber', 'eMoneyPin'].includes(name);
@@ -37,6 +48,44 @@ export default function Checkout() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    let isValid = true;
+    const fields = ['name', 'email', 'phone', 'address', 'zip', 'city', 'country'];
+    const newErrors = { ...errors };
+    fields.forEach(field => {
+      const value = formCheckout[field as keyof FormCheckout];
+      if (typeof value === 'string' && value.trim() === "" || typeof value === 'number' && value === 0) {
+        newErrors[field as keyof FormErrors] = "Required"
+        isValid = false;
+      } else {
+        newErrors[field as keyof FormErrors]  = '';
+      }
+    });
+    if(formCheckout.payment == 'eMoney'){
+      if(formCheckout.eMoneyNumber == 0){
+        newErrors.eMoneyNumber = "Required"
+        isValid = false;
+      }else {
+        newErrors.eMoneyNumber = '';
+      }
+      if(formCheckout.eMoneyPin == 0){
+        newErrors.eMoneyPin = "Required"
+        isValid = false;
+      }else {
+        newErrors.eMoneyPin = '';
+      }
+    }
+    if (newErrors.email != 'Required'){
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formCheckout.email);
+      if(!isValidEmail){
+        newErrors.email = "Wrong Format"
+      }else{
+        newErrors.email = '';
+      }
+    }
+    setFormErrors(newErrors)
+    if(isValid){
+      dispatch({type: 'clear-cart'})
+    }
   }
 
   return (
@@ -48,17 +97,17 @@ export default function Checkout() {
           <h4 className="text-custom-orange font-semibold uppercase text-md mt-2">
             Billing Details
           </h4>
-          <InfoInput label="Name" placeholder="Alexei Ward" id="name" value={formCheckout.name} handleValue={handleChange}/>
-          <InfoInput label="Email Address" placeholder="alexei@mail.com" id="email" type="email" value={formCheckout.email} handleValue={handleChange}/>
-          <InfoInput label="Phone Number" placeholder="+1 202-555-0136" id="phone"  value={formCheckout.phone} handleValue={handleChange}/>
+          <InfoInput label="Name" placeholder="Alexei Ward" id="name" value={formCheckout.name} handleValue={handleChange} errorMessage={formErrors.name} required/>
+          <InfoInput label="Email Address" placeholder="alexei@mail.com" id="email" type="text" value={formCheckout.email} handleValue={handleChange} errorMessage={formErrors.email} required/>
+          <InfoInput label="Phone Number" placeholder="+1 202-555-0136" id="phone"  value={formCheckout.phone} handleValue={handleChange} errorMessage={formErrors.phone} required/>
           
           <h4 className="text-custom-orange font-semibold uppercase text-md mt-2">
             Shipping Info
           </h4>
-          <InfoInput label="Your Address" placeholder="1137 Williams Avenue" id="address" value={formCheckout.address} handleValue={handleChange}/>
-          <InfoInput label="ZIP Code" placeholder="10001" id="zip" maxLength={5} value={formCheckout.zip} handleValue={handleChange}/>
-          <InfoInput label="City" placeholder="New York" id="city" value={formCheckout.city} handleValue={handleChange}/>
-          <InfoInput label="Country" placeholder="United States" id="country"  value={formCheckout.country} handleValue={handleChange}/>
+          <InfoInput label="Your Address" placeholder="1137 Williams Avenue" id="address" value={formCheckout.address} handleValue={handleChange} errorMessage={formErrors.address} required/>
+          <InfoInput label="ZIP Code" placeholder="10001" id="zip" maxLength={5} value={formCheckout.zip} handleValue={handleChange} errorMessage={formErrors.zip} required/>
+          <InfoInput label="City" placeholder="New York" id="city" value={formCheckout.city} handleValue={handleChange} errorMessage={formErrors.city} required/>
+          <InfoInput label="Country" placeholder="United States" id="country"  value={formCheckout.country} handleValue={handleChange} errorMessage={formErrors.country} required/>
 
           <h4 className="text-custom-orange font-semibold uppercase text-md mt-2">
             Payment Details
@@ -70,8 +119,8 @@ export default function Checkout() {
 
           {selectedPayment == 'eMoney' && (
             <div className="mt-4 flex flex-col gap-2" id="moneyInfo">
-          <InfoInput label="e-Money Number"  id="eMoneyNumber" placeholder="238521993"  value={formCheckout.eMoneyNumber} handleValue={handleChange}/>
-          <InfoInput label="e-Money Pin"  id="eMoneyPin" placeholder="6891" maxLength={4} value={formCheckout.eMoneyPin} handleValue={handleChange}/>
+          <InfoInput label="e-Money Number"  id="eMoneyNumber" placeholder="238521993"  value={formCheckout.eMoneyNumber} handleValue={handleChange} errorMessage={formErrors.eMoneyNumber} required={selectedPayment == 'eMoney'}/>
+          <InfoInput label="e-Money Pin"  id="eMoneyPin" placeholder="6891" maxLength={4} value={formCheckout.eMoneyPin} handleValue={handleChange} errorMessage={formErrors.eMoneyPin} required={selectedPayment == 'eMoney'}/>
           </div>
             )
           }
