@@ -6,7 +6,8 @@ import { usePurchase } from "../components/hooks/usePurchase";
 import CartItems from "../components/header/CartItems";
 import { formatCurrency } from "../helpers";
 import { FormCheckout, FormErrors } from "../types";
-
+import OrderSuccess from '../components/checkout/OrderSuccess';
+import { CartProduct } from '../types';
 
 type FieldRefs = {
   [key: string]: React.RefObject<HTMLInputElement> | null;
@@ -15,9 +16,12 @@ type FieldRefs = {
 
 export default function Checkout() {
   const [selectedPayment, setSelectedPayment] = useState('eMoney');
-  const { state, dispatch, totalPurchase, shipping, vat, grandTotal } = usePurchase();
+  const { state, totalPurchase, shipping, vat, grandTotal } = usePurchase();
+  const [firstProduct, setFirstProduct] = useState<CartProduct | null>(null);
+  const [totalCheckout, setTotalCheckout] = useState(0);
+  const [itemsQuantity, setItemsQuantity] = useState(0);
   const isEmpty = useMemo(() => state.cart.length === 0, [state.cart]);
-
+  const [isOpenCheckout, setIsOpenCheckout] = useState<boolean>(false);
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
@@ -137,7 +141,10 @@ export default function Checkout() {
     setFormErrors(newErrors);
 
     if (isValid) {
-      dispatch({ type: 'clear-cart' });
+      setFirstProduct(state.cart[0]);
+      setTotalCheckout(grandTotal)
+      setIsOpenCheckout(true);
+      setItemsQuantity(state.cart.length - 1);
     } else if (firstErrorRef && firstErrorRef.current) {
       firstErrorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
       firstErrorRef.current.focus();
@@ -213,6 +220,8 @@ export default function Checkout() {
           </button>
         </div>
       </form>
+
+      <OrderSuccess isOpen={isOpenCheckout} total={totalCheckout} product={firstProduct} itemsQuantity={itemsQuantity}/>
     </div>
   );
 }

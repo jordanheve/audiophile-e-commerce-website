@@ -17,10 +17,13 @@ export type PurchaseState = {
     cart: CartProduct[]
 }
 
+const initialCart = (): CartProduct[] =>  JSON.parse(localStorage.getItem('cart') || '[]')
+
+
 export const initialState : PurchaseState = {
     menuOpen: false,
     cartOpen: false,
-    cart: [] 
+    cart: initialCart()
 }
 
 const MIN_QUANTITY = 1;
@@ -54,9 +57,6 @@ export const purchaseReducer = ( state: PurchaseState = initialState,  actions: 
             return {...state, cart: state.cart.map(item => item.id === actions.payload.id && item.quantity > MIN_QUANTITY ? {...item, quantity: item.quantity - 1}: item) }
         case 'clear-cart':
             return {...state, cart: [] }
-
-
-
         default:
             return state
     }

@@ -1,4 +1,4 @@
-import {useReducer, createContext, Dispatch, ReactNode} from 'react'
+import {useReducer, createContext, Dispatch, ReactNode, useEffect} from 'react'
 import { PurchaseActions, PurchaseState, initialState, purchaseReducer } from '../../reducers/purchase-reducer';
 import { useMemo } from "react";
 
@@ -19,10 +19,17 @@ export const PurchaseContext = createContext<PurchaseContextProps>({} as Purchas
 
 export default function PurchaseProvider({children} : PurchaseProviderProps) {
     const [state, dispatch] = useReducer(purchaseReducer, initialState)
-    const totalPurchase = useMemo(() => state.cart.reduce((acc, item) => acc + item.price * item.quantity, 0), [state.cart])
+    const totalPurchase = useMemo(() => state?.cart.reduce((acc, item) => acc + item.price * item.quantity, 0) ?? 0, [state?.cart])
     const shipping = 50;
     const vat = useMemo(() =>  Math.round(totalPurchase * 0.2) , [totalPurchase]);
     const grandTotal = useMemo(() => totalPurchase + vat + shipping, [totalPurchase, vat, shipping])
+    
+    useEffect(() => {
+        if (state) {
+            localStorage.setItem('cart', JSON.stringify(state.cart))
+        }
+    }, [state?.cart, state])
+
   return (
     <PurchaseContext.Provider value={{ state, dispatch, totalPurchase, shipping, vat, grandTotal }}>
       {children}
