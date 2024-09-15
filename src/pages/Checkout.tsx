@@ -16,7 +16,7 @@ type FieldRefs = {
 
 export default function Checkout() {
   const [selectedPayment, setSelectedPayment] = useState('eMoney');
-  const { state, totalPurchase, shipping, vat, grandTotal } = usePurchase();
+  const { state, dispatch, totalPurchase, shipping, vat, grandTotal } = usePurchase();
   const [firstProduct, setFirstProduct] = useState<CartProduct | null>(null);
   const [totalCheckout, setTotalCheckout] = useState(0);
   const [itemsQuantity, setItemsQuantity] = useState(0);
@@ -145,6 +145,9 @@ export default function Checkout() {
       setTotalCheckout(grandTotal)
       setIsOpenCheckout(true);
       setItemsQuantity(state.cart.length - 1);
+      window.scrollTo(0, 0);
+      dispatch({ type: 'clear-cart' });
+
     } else if (firstErrorRef && firstErrorRef.current) {
       firstErrorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
       firstErrorRef.current.focus();

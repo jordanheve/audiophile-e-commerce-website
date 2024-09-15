@@ -2,7 +2,7 @@ import { Product } from "../../types";
 import { formatCurrency } from "../../helpers";
 import { useState } from "react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
-
+import toast from 'react-hot-toast';
 import { usePurchase } from "../hooks/usePurchase";
 import GoBack from "../GoBack";
 
@@ -39,6 +39,23 @@ export default function ProductInfo( { product} : ProductInfoProps ) {
     const [paragraph1, paragraph2] = features
       ? splitFeatures(features, 300)
       : ["", ""];
+
+      const handleAddToCart = () => {
+
+        dispatch({type: 'add-to-cart', payload: {product, quantity}})
+        toast.success('Product added to cart', {
+          style: {
+            border: '1px solid #000',
+            padding: '16px',
+            color: '#000',
+          },
+          iconTheme: {
+            primary: '#000',
+            secondary: '#FFFF',
+          },
+        })
+      }
+
   return (
     <section className="pt-28 flex flex-col text-left gap-6">
         <GoBack/>
@@ -71,7 +88,7 @@ export default function ProductInfo( { product} : ProductInfoProps ) {
               <PlusIcon className="h-3 w-3 text-zinc-600 " />
             </button>
           </div>
-          <button className="bg-custom-orange text-white py-3 px-8 font-semibold uppercase text-xs  tracking-wider " onClick={()=> dispatch({type:'add-to-cart', payload: {product, quantity}})}>
+          <button className="bg-custom-orange text-white py-3 px-8 font-semibold uppercase text-xs  tracking-wider " onClick={handleAddToCart}>
             Add to Cart
           </button>
         </div>

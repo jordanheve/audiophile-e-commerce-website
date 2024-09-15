@@ -9,6 +9,7 @@ import ProductDetail from './pages/ProductDetail'
 import './index.css'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
+import { Toaster } from 'react-hot-toast';
 
 const AppLayout = () => {
 
@@ -20,6 +21,7 @@ const AppLayout = () => {
         <Outlet/>
         </main>
         <Footer />
+        <Toaster/>
        </>
     )
 }
