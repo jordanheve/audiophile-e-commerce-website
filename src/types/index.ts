@@ -80,3 +80,5 @@ export type FormErrors = {
 
 
 export type CartProduct = Product & {quantity: number}
+
+export type DeviceType = 'mobile' | 'tablet' | 'desktop';

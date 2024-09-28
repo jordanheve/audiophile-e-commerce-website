@@ -92,7 +92,7 @@ export default function ProductInfo( { product} : ProductInfoProps ) {
             Add to Cart
           </button>
         </div>
-        <div className="my-10">
+        <div className="mt-10">
           <h6 className="text-3xl font-semibold mb-4 uppercase" >Features</h6>
           <div className="text-zinc-500">
             <p className="mb-4">{paragraph1}</p>

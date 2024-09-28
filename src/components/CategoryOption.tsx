@@ -10,7 +10,7 @@ export default function CategoryOption({categoryName, categoryUrl, imageUrl}  : 
   const { dispatch} = usePurchase();
 
 return (
-  <div className="h-56 mt-4 p-4 flex relative  justify-between flex-col items-center ">
+  <div className="h-56  p-4 flex relative  justify-between flex-col items-center ">
       <div className="z-10 text-center flex flex-col gap-2  uppercase">
 
        <img src={imageUrl}

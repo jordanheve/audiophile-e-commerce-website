@@ -1,12 +1,19 @@
 import SeeProductBtn from "../SeeProductBtn";
-
+import { DeviceType } from "../../types";
+import { usePurchase } from "../hooks/usePurchase";
 export default function MainSection() {
-  return (
-    <section className="bg-zinc-950">
-        <div className="relative">
-            <img src="/assets/home/mobile/image-header.jpg" alt="headphones image" className="object-fill brightness-50"/>
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center flex flex-col gap-7 items-center">
+    const {deviceType} = usePurchase() as {deviceType: DeviceType};
+
+  return (
+    <section className="bg-neutral-950 flex  justify-center">
+        <div className="relative max-w-[1440px]">
+            <div>
+            <img src={`/assets/home/${deviceType}/image-header.jpg`} alt="headphones image" className="object-fill brightness-50 "/>
+            
+            </div>
+
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center xl:left-1/4 flex flex-col gap-7 items-center">
                 <p className="uppercase text-zinc-500 text-xl tracking-widest">
                     new product
                 </p>

@@ -5,6 +5,8 @@ import ElementNotFound from "../components/ElementNotFound";
 import ProductInfo from "../components/productDetail/ProductInfo";
 import CategoryOptions from "../components/CategoryOptions";
 import BestGearDescription from "../components/BestGearDescription";
+import ProductGallery from "../components/productDetail/ProductGallery";
+import ProductOthers from "../components/productDetail/ProductOthers";
 
 export default function ProductDetail() {
   const params = useParams<{ id: string }>();
@@ -14,8 +16,10 @@ export default function ProductDetail() {
   );
 
   return product ? (
-    <div className="px-6">
+    <div className="px-6 flex flex-col gap-28">
       <ProductInfo product={product} />
+      <ProductGallery product={product} />
+      <ProductOthers product={product} />
       <CategoryOptions/>
       <BestGearDescription/>
     </div>
