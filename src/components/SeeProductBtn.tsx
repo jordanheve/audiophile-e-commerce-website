@@ -12,7 +12,7 @@ export default function SeeProductBtn({ color = 'default', slug = "/" }: SeeProd
   };
 
   return (
-    <Link to={slug}className={`${className[color]} font-semibold w-fit px-6 py-3`}>
+    <Link to={slug}className={`${className[color]} font-semibold w-fit px-6 py-3 hover:brightness-110`}>
       SEE PRODUCT
     </Link>
   )
