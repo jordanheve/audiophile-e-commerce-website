@@ -14,7 +14,7 @@ export default function Cart() {
     navigate('/checkout');
   }
   return (
-    <div>
+    <div className="basis-36 flex items-center justify-end">
       <button onClick={() => dispatch({type: 'open-cart'})}><ShoppingCartIcon className="h-6 w-6 text-white" /></button>
         <Dialog open={state.cartOpen} onClose={() => dispatch({type: 'close-cart'})} className="relative z-50">
 

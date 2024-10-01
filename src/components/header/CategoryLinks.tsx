@@ -4,7 +4,7 @@ export default function CategoryLinks() {
     const styles = "uppercase text-zinc-50 cursor-pointer hover:text-custom-orange"
     return (
         
-        <div className="flex gap-8 text-sm font-semibold tracking-wider ">
+        <div className="flex gap-8 text-sm font-semibold tracking-wider">
         <Link to='/'className={styles}>Home</Link>
         <Link to="/category/headphones" className={styles}>Headphones</Link>
         <Link to="/category/speakers" className={styles}>speakers</Link>

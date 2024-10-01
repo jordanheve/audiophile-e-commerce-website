@@ -4,13 +4,13 @@ import patternCircles from "/assets/home/desktop/pattern-circles.svg";
 import mobileSpeakerZx7 from "/assets/home/mobile/image-speaker-zx7.jpg";
 import mobileEarphonesYx1 from "/assets/home/mobile/image-earphones-yx1.jpg" ; 
 import SeeProductBtn from "../SeeProductBtn";
-export default function ProductoShowcase() {
+export default function ProductShowcase() {
   return (
     <section className="flex flex-col gap-4">
-  <div className="text-center bg-custom-orange rounded-lg relative py-14 overflow-hidden">
-    <div className="relative flex justify-center ">
-      <img className="h-52 z-10" src={speakerZx9} alt="ZX9 speaker image" />
-      <img className="absolute top-1/2 -translate-y-1/2 h-[558px] w-[558px] object-cover z-10" src={patternCircles} alt="background circles" />
+  <div className="text-center bg-custom-orange rounded-lg relative py-14 overflow-hidden lg:flex">
+    <div className="relative lg:-bottom-16 flex justify-center lg:w-3/5 overflow-visible">
+      <img className="h-52 lg:h-[410px] z-30 " src={speakerZx9} alt="ZX9 speaker image" />
+      <img className="absolute top-1/2 lg:top-2/3 -translate-y-1/2 max-lg:h-[558px] max-lg:w-[558px] max-lg:object-cover md:scale-125 z-10" src={patternCircles} alt="background circles" />
     </div>
     <div className="relative z-10  flex flex-col gap-6 mt-8 items-center mx-auto text-white max-w-xs">
       <h4 className="text-3xl font-semibold ">ZX9 <br /> SPEAKER</h4>

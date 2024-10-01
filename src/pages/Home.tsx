@@ -1,15 +1,16 @@
 import CategoryOptions from "../components/CategoryOptions";
 import MainSection from "../components/home/MainSection";
 import BestGearDescription from "../components/BestGearDescription";
-import ProductoShowcase from "../components/home/ProductoShowcase";
+import ProductShowcase from "../components/home/ProductShowcase";
 
 export default function Home() {
   return (
     <div>
       <MainSection />
-      <div className="px-6 flex flex-col gap-28">
+      <div className="px-6 flex flex-col gap-28  max-w-[1110px] mx-auto">
+      
       <CategoryOptions />
-      <ProductoShowcase />
+      <ProductShowcase />
       <BestGearDescription />
       </div>
     </div>
