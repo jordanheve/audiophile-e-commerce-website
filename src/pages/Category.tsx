@@ -10,12 +10,12 @@ export default function Category() {
     params.category === 'speakers' ||
     params.category === 'earphones' ||
     params.category === 'headphones' ? (
-      <>
+      <div>
       <div className='text-center mt-24 h-28 bg-zinc-950 grid items-center'>
         <h2 className='text-white font-bold text-3xl uppercase'>{params.category}</h2>
       </div>
 
-      <div className='px-6 flex flex-col gap-24 mt-24'>
+      <div className='px-6 flex flex-col gap-24 mt-24 max-w-[1110px] mx-auto'>
         {products.filter((product) => product.category === params.category)
         .sort((a, b) => (b.new ? 1 : 0) - (a.new ? 1 : 0))
         .map((product) => (
@@ -25,7 +25,7 @@ export default function Category() {
         <BestGearDescription />
       </div>
 
-      </>
+      </div>
     ) : (
       <ElementNotFound />
     )

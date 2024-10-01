@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <MainSection />
-      <div className="px-6 flex flex-col gap-28  max-w-[1110px] mx-auto">
+      <div className="max-lg:px-6 flex flex-col gap-28  max-w-[1110px] mx-auto">
       
       <CategoryOptions />
       <ProductShowcase />

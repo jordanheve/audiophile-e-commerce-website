@@ -17,7 +17,7 @@ export default function Header() {
         )}
 
         <Link to="/">
-        <img src={headerLogo} alt="audiophile" className="basis-36 flex items-center justify-end" />
+        <img src={headerLogo} alt="audiophile" className="lg:basis-36" />
         </Link>
           {deviceType == "desktop" && (
             <CategoryLinks/>

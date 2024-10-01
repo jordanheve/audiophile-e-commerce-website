@@ -13,7 +13,7 @@ export default function MainSection() {
             
             </div>
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center lg:text-left lg:items-start lg:left-1/4 flex flex-col gap-7 items-center">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center lg:text-left lg:items-start lg:left-1/4 xl:pl-4 flex flex-col gap-7 items-center">
                 <p className="uppercase text-zinc-500 text-xl tracking-widest xl:tracking-[.5rem]">
                     new product
                 </p>
