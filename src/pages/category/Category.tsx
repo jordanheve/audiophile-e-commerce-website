@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
-import { products } from '../data/data';
-import ElementNotFound from '../components/ElementNotFound';
-import ProductCategory from '../components/category/ProductCategory';
-import CategoryOptions from '../components/CategoryOptions';
-import BestGearDescription from '../components/BestGearDescription';
+import { products } from '../../data/data';
+import ElementNotFound from '../../components/ElementNotFound';
+import ProductCategory from '../../components/category/ProductCategory';
+import CategoryOptions from '../../components/CategoryOptions';
+import BestGearDescription from '../../components/BestGearDescription';
+import './Category.css';
 export default function Category() {
   const params = useParams();
   return (
@@ -15,7 +16,7 @@ export default function Category() {
         <h2 className='text-white font-bold text-3xl uppercase'>{params.category}</h2>
       </div>
 
-      <div className='px-6 flex flex-col gap-24 mt-24 max-w-[1110px] mx-auto'>
+      <div className='px-6 flex flex-col gap-24 mt-24 max-w-[1110px] mx-auto category-container'>
         {products.filter((product) => product.category === params.category)
         .sort((a, b) => (b.new ? 1 : 0) - (a.new ? 1 : 0))
         .map((product) => (

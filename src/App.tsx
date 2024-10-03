@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter, Outlet, ScrollRestoration} from 'r
 
 import Home from './pages/Home'
 import Checkout from './pages/Checkout'
-import Category from './pages/Category'
+import Category from './pages/category/Category'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/ProductDetail'
 import './index.css'

@@ -1,26 +1,33 @@
 
-import type { Product } from "../../types";
+import type { Product, DeviceType } from "../../types";
 import SeeProductBtn from "../SeeProductBtn";
-
+import { usePurchase } from "../hooks/usePurchase";
 type ProductCategoryProps = {
   product: Product;  // Define the type of product prop as a Product type from the types.ts file
 }
 
-export default function ProductCategory({ product }: ProductCategoryProps) {
-  return (
-    <div key={product.id} className='flex flex-col items-center text-center gap-6'>
-            <div>
-            <img src={product.image.mobile} alt={product.name} className='h-80 ' />
-            </div>
-            {product.new && 
-            <p className='text-custom-orange uppercase tracking-[.5rem] text-sm'>
-              New Product
-            </p>}
 
-            <h3 className='font-semibold text-xl'>{product.name}</h3>
-            <p className='text-sm text-zinc-500'>{product.description}</p>
-            
-           <SeeProductBtn slug={'/product/'+product.slug}/>
+export default function ProductCategory({ product }: ProductCategoryProps) {
+
+  const {deviceType} = usePurchase() as {deviceType: DeviceType};
+
+  return (
+    <div key={product.id} className='flex flex-col items-center text-center gap-6 lg:flex-row product-container'>
+            <div className="w-1/2">
+            <img src={product.image[deviceType]} alt={product.name} className='h-80 lg:h-auto' />
+            </div>
+            <div className="flex flex-col items-center lg:w-1/2  gap-6 lg:text-left lg:items-baseline lg:p-6 lg:gap-8">
+
+              {product.new && 
+              <p className='text-custom-orange uppercase tracking-[.5rem] text-sm'>
+                New Product
+              </p>}
+
+              <h3 className='font-semibold text-xl lg:text-3xl'>{product.name}</h3>
+              <p className='text-sm text-zinc-500 lg:text-base'>{product.description}</p>
+              
+            <SeeProductBtn slug={'/product/'+product.slug}/>
+            </div>
     </div>
   )
 }

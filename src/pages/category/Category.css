@@ -1,0 +1,5 @@
+@media(min-width: 1024px) {
+    .category-container .product-container:nth-child(even) {
+        flex-direction: row-reverse; 
+    }
+}
