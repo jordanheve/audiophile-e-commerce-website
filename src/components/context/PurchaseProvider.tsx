@@ -1,6 +1,7 @@
 import {useReducer, createContext, Dispatch, ReactNode, useEffect} from 'react'
 import { PurchaseActions, PurchaseState, initialState, purchaseReducer } from '../../reducers/purchase-reducer';
 import { useMemo, useState } from "react";
+import { DeviceType } from '../../types';
 
 type PurchaseProviderProps = {
     children: ReactNode
@@ -13,7 +14,7 @@ type PurchaseContextProps = {
     shipping: number;
     vat: number;
     grandTotal: number;
-    deviceType: string;
+    deviceType: DeviceType;
 }
 
 export const PurchaseContext = createContext<PurchaseContextProps>({} as PurchaseContextProps)
@@ -23,11 +24,11 @@ export default function PurchaseProvider({children} : PurchaseProviderProps) {
     const totalPurchase = useMemo(() => state?.cart.reduce((acc, item) => acc + item.price * item.quantity, 0) ?? 0, [state?.cart])
     const shipping = 50;
     const vat = useMemo(() =>  Math.round(totalPurchase * 0.2) , [totalPurchase]);
-    const [deviceType, setDeviceType] = useState('');
+    const [deviceType, setDeviceType] = useState<DeviceType>('mobile');
     const grandTotal = useMemo(() => totalPurchase + vat + shipping, [totalPurchase, vat, shipping])
     const determineDeviceType = () => {
       const width = window.innerWidth;
-      if (width < 640) {
+      if (width < 768) {
         setDeviceType('mobile');
       } else if (width < 1024) {
         setDeviceType('tablet');
