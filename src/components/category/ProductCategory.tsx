@@ -14,7 +14,7 @@ export default function ProductCategory({ product }: ProductCategoryProps) {
   return (
     <div key={product.id} className='flex flex-col items-center text-center gap-6 lg:flex-row product-container'>
             <div className="lg:w-1/2">
-            <img src={product.image[deviceType]} alt={product.name} className='h-80 lg:h-auto' />
+            <img src={product.categoryImage[deviceType]} alt={product.name} className='rounded-lg' />
             </div>
             <div className="flex flex-col items-center lg:w-1/2  gap-6 lg:text-left lg:items-baseline lg:p-6 lg:gap-8">
 
@@ -22,10 +22,10 @@ export default function ProductCategory({ product }: ProductCategoryProps) {
               <p className='text-custom-orange uppercase tracking-[.5rem] text-sm'>
                 New Product
               </p>}
-              <h3 className='font-semibold text-2xl lg:text-3xl lg:max-w-48'>
+              <h3 className='font-semibold text-2xl md:text-5xl lg:text-3xl lg:max-w-48'>
                 {product.name.split(' ').slice(0, -1).join(' ')}<br />{product.name.split(' ').slice(-1)}
               </h3>
-              <p className='text-sm text-zinc-500 lg:text-base'>{product.description}</p>
+              <p className=' text-zinc-500'>{product.description}</p>
               
             <SeeProductBtn slug={'/product/'+product.slug}/>
             </div>

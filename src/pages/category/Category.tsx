@@ -11,7 +11,7 @@ export default function Category() {
     params.category === 'speakers' ||
     params.category === 'earphones' ||
     params.category === 'headphones' ? (
-      <div>
+      <div className="pb-24">
       <div className='text-center mt-24 h-28 bg-zinc-950 grid items-center'>
         <h2 className='text-white font-bold text-3xl uppercase'>{params.category}</h2>
       </div>

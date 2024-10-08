@@ -22,7 +22,7 @@ export default function GoBack() {
   return (
     <button
       onClick={handleGoBack}
-      className="self-start text-zinc-500 hover:bg-zinc-100 p-1"
+      className="self-start text-zinc-500 hover:bg-zinc-100 p-1 text-sm"
     >
       Go Back
     </button>

@@ -16,7 +16,7 @@ export default function ProductDetail() {
   );
 
   return product ? (
-    <div className="max-lg:px-6 flex flex-col gap-28 max-w-[1110px] mx-auto">
+    <div className="max-lg:px-6 flex flex-col gap-28 max-w-[1110px] mx-auto pb-24" >
       <ProductInfo product={product} />
       <ProductGallery product={product} />
       <ProductOthers product={product} />

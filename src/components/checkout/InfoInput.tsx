@@ -30,7 +30,7 @@ const InfoInput = forwardRef<HTMLInputElement, InputInfoProps>(
           maxLength={maxLength}
           placeholder={placeholder}
           required={required}
-          className={errorMessage ? 'border p-3 rounded-md outline-none border-red-500 caret-custom-orange' : 'border p-3 rounded-md outline-none caret-custom-orange'}
+          className={errorMessage ? 'border p-3 rounded-md outline-none border-red-500 caret-custom-orange' : 'focus:border-custom-orange border p-3 rounded-md outline-none caret-custom-orange'}
           aria-invalid={errorMessage ? 'true' : 'false'}
         />
       </div>

@@ -15,7 +15,7 @@ export default function MenuCategories() {
         {/* Full-screen container to center the panel */}
         <div className="fixed inset-0 top-24 overflow-auto">
           {/* The actual dialog panel  */}
-          <DialogPanel transition className="max-w-lg space-y-4 bg-white p-8 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
+          <DialogPanel transition className=" space-y-4 bg-white p-8 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
             <CategoryOptions />
           </DialogPanel>
         </div>

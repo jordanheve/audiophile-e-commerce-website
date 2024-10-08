@@ -55,19 +55,19 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   };
 
   return (
-    <section className="pt-28 flex flex-col text-left gap-6 text-sm">
+    <section className="pt-28 flex flex-col text-left gap-6 ">
       <GoBack />
-      <div className="flex flex-col gap-6 md:flex-row lg:gap-24 items-center">
-        <div className="rounded-lg overflow-hidden">
+      <div className="flex flex-col gap-6 md:flex-row md:gap-12 lg:gap-24 items-center">
+        <div className="rounded-lg overflow-hidden md:w-2/5">
           <img
-            className="object-cover w-full h-full max-h-96 md:max-h-full"
+            className="object-cover w-full"
             src={product.image[deviceType]}
             alt={product.name}
           />
         </div>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6  md:w-3/5">
           {product.new && (
-            <p className="text-custom-orange uppercase tracking-[.5rem] text-sm">
+            <p className="text-custom-orange uppercase tracking-[.5rem]">
               New Product
             </p>
           )}
@@ -77,7 +77,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             <br />
             {product.name.split(" ").slice(-1)}
           </h2>
-          <p className="text-zinc-500 max-w-">{product.description}</p>
+          <p className="text-zinc-500">{product.description}</p>
           <p className="font-black tracking-wider text-lg">
             {formatCurrency(product.price)}
           </p>
@@ -104,7 +104,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       <div className="lg:flex gap-24">
         <div className="mt-10">
           <h6 className="text-3xl font-semibold mb-4 uppercase">Features</h6>
-          <div className="text-zinc-500 max-w-[38rem] ">
+          <div className="text-zinc-500 lg:max-w-[38rem] ">
             <p className="mb-4">{paragraph1}</p>
             {paragraph2 && <p>{paragraph2}</p>}
           </div>

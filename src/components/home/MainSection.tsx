@@ -6,7 +6,7 @@ export default function MainSection() {
     const {deviceType} = usePurchase() as {deviceType: DeviceType};
 
   return (
-    <section className="bg-[#0D0D0D] flex  justify-center">
+    <section className="bg-[#0D0D0D] flex  justify-center mb-20">
         <div className="relative max-w-[1440px]">
             <div>
             <img src={`/assets/home/${deviceType}/image-header.jpg`} alt="headphones image" className="object-fill brightness-50 "/>

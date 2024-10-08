@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <header className="  bg-zinc-950  text-white fixed top-0 z-[90] w-full">    
-      <div className="max-w-[1110px] flex justify-between items-center mx-auto  border-b p-4 h-24 border-zinc-500 font-manrope">
+      <div className="max-w-[1110px] flex justify-between items-center mx-auto  border-b max-lg:p-4 h-24 border-zinc-500 font-manrope">
 
         {deviceType !== 'desktop' && (
           <MenuCategories />
