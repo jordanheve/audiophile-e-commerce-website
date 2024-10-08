@@ -18,7 +18,7 @@ export default function CartItems({item, justshow = false} : CartItemsProps) {
       return item.name.replace(regex, '').replace(/\s{2,}/g, ' ').trim();
     }, [item.name])
   return (
-    <div className='flex justify-between items-center'>
+    <div className='flex justify-between items-center gap-4'>
         <div className='flex gap-4'>
             <div className='h-16 w-16'>
             <img className='rounded' src={item.image.mobile} alt={item.name} />

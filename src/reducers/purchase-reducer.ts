@@ -4,8 +4,6 @@ import { CartProduct, Product } from "../types";
 export type PurchaseActions = 
 {type: 'close-menu' } |
 { type: 'open-menu' } |
-{ type: 'open-cart'} |
-{type: 'close-cart'}  |
 {type: 'add-to-cart', payload: {product: Product, quantity: number}} |
 {type: 'remove-from-cart', payload: {id: Product['id']} } |
 {type: 'increase-quantity', payload: {id: Product['id']} } |
@@ -33,11 +31,6 @@ export const purchaseReducer = ( state: PurchaseState = initialState,  actions: 
             return {...state, menuOpen: false }
         case 'open-menu':
             return {...state, menuOpen: true }
-        case 'open-cart':
-            return {...state, cartOpen: true }
-        case 'close-cart':
-            return {...state, cartOpen: false }
-
         case 'add-to-cart':{
             const existingItem = state.cart.find(item => item.id === actions.payload.product.id)
             const quantity = actions.payload.quantity

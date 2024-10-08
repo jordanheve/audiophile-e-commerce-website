@@ -1,5 +1,5 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/outline"
-import { Dialog, DialogBackdrop, DialogPanel} from '@headlessui/react'
+import { Popover, PopoverBackdrop, PopoverButton, PopoverPanel, CloseButton } from '@headlessui/react'
 import { formatCurrency } from '../../helpers'
 import { usePurchase } from "../hooks/usePurchase"
 import CartItems from "./CartItems";
@@ -10,20 +10,14 @@ export default function Cart() {
   const isEmpty = useMemo( () => state.cart.length === 0, [state.cart]);
   const navigate = useNavigate();
   const handleCheckout = () => {
-    dispatch({type: 'close-cart'})
     navigate('/checkout');
   }
   return (
     <div className="lg:basis-36 flex items-center justify-end">
-      <button onClick={() => dispatch({type: 'open-cart'})}><ShoppingCartIcon className="h-6 w-6 text-white" /></button>
-        <Dialog open={state.cartOpen} onClose={() => dispatch({type: 'close-cart'})} className="relative z-50">
-
-        <DialogBackdrop transition className="fixed inset-0 bg-black/30 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0" />
-
-
-        <div className="fixed inset-0 top-28">
-
-          <DialogPanel transition className="max-w-lg space-y-6  font-manrope mx-4 rounded-lg bg-white px-6 py-8 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
+        <Popover className="relative z-50">
+      <PopoverButton><ShoppingCartIcon className="h-6 w-6 text-white" /></PopoverButton>
+        <PopoverBackdrop transition className="fixed inset-0 bg-black/30 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0" />
+          <PopoverPanel transition className=" space-y-6 absolute right-0 max-sm:w-80 w-96 top-20 text-zinc-950 font-manrope ml-4 rounded-lg bg-white px-6 py-8 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
             {isEmpty ? (
               <div>
               <p className="text-center text-xl py-10 font-semibold">Cart is empty</p>
@@ -45,15 +39,13 @@ export default function Cart() {
             </span>
             </div>
 
-            <button onClick={handleCheckout} className="uppercase w-full bg-custom-orange text-white py-3 tracking-wider text-sm">
+            <CloseButton  onClick={handleCheckout} className="uppercase w-full bg-custom-orange text-white py-3 tracking-wider text-sm">
               Checkout
-              </button>
+              </CloseButton>
               </>
             )}
-          
-          </DialogPanel>
-        </div>
-      </Dialog>
+          </PopoverPanel>
+      </Popover>
     </div>
   )
 }
