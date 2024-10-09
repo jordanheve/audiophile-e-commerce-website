@@ -9,11 +9,12 @@ type InputInfoProps = {
     required?: boolean;
     value: string | number;
     maxLength?: number;
+    inputMode?: "text" | "none" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
     handleValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InfoInput = forwardRef<HTMLInputElement, InputInfoProps>(
-  ({ label, id, placeholder, type = "text", errorMessage = "", value, handleValue, maxLength = 100, required }, ref) => {
+  ({ label, id, placeholder, type = "text", errorMessage = "", value, handleValue, maxLength = 100, required, inputMode = 'text'}, ref) => {
     return (
       <div className="flex flex-col">
         <label htmlFor={id} className="text-sm font-bold mb-1 flex justify-between items-center">
@@ -27,6 +28,7 @@ const InfoInput = forwardRef<HTMLInputElement, InputInfoProps>(
           id={id}
           type={type}
           name={id}
+          inputMode={inputMode}
           maxLength={maxLength}
           placeholder={placeholder}
           required={required}

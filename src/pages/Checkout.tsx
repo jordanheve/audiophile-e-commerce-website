@@ -210,6 +210,7 @@ export default function Checkout() {
               label="Phone Number"
               placeholder="+1 202-555-0136"
               id="phone"
+              inputMode="tel"
               value={formCheckout.phone}
               handleValue={handleChange}
               errorMessage={formErrors.phone}
@@ -234,6 +235,7 @@ export default function Checkout() {
               placeholder="10001"
               id="zip"
               maxLength={5}
+              inputMode="numeric"
               value={formCheckout.zip}
               handleValue={handleChange}
               errorMessage={formErrors.zip}
@@ -284,6 +286,7 @@ export default function Checkout() {
                     label="e-Money Number"
                     id="eMoneyNumber"
                     placeholder="238521993"
+                    inputMode="numeric"
                     value={formCheckout.eMoneyNumber}
                     handleValue={handleChange}
                     errorMessage={formErrors.eMoneyNumber}
@@ -295,6 +298,7 @@ export default function Checkout() {
                     id="eMoneyPin"
                     placeholder="6891"
                     maxLength={4}
+                    inputMode="numeric"
                     value={formCheckout.eMoneyPin}
                     handleValue={handleChange}
                     errorMessage={formErrors.eMoneyPin}
