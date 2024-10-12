@@ -17,7 +17,7 @@ return (
           alt={categoryName}
           className="h-28 lg:h-40 w-auto"
           />
-      <h4 className="font-semibold ">{categoryName}</h4>
+      <p className="font-semibold">{categoryName}</p>
         <Link onClick={() => dispatch({type: 'close-menu'})} className="font-semibold text-xs text-zinc-500 flex gap-1 justify-center items-center " to={'/category/'+categoryUrl}>
           <span className="hover:text-custom-orange">Shop</span>
           <ChevronRightIcon className="h-6 w-6 text-custom-orange" />

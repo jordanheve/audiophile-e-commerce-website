@@ -2,7 +2,7 @@ import headerLogo from "/logo.svg";
 import FacebookLogo from "../../assets/icon-facebook.svg?react";
 import TwitterLogo from "../../assets/icon-twitter.svg?react";
 import InstagramLogo from "../../assets/icon-instagram.svg?react";
-
+import { Link } from "react-router-dom";
 import CategoryLinks from "../header/CategoryLinks";
 
 export default function Footer() {
@@ -15,7 +15,9 @@ export default function Footer() {
         <div className="flex flex-col gap-3 items-center w-full">
           <div className="flex justify-between w-full flex-col gap-6 lg:flex-row">
             <div className="max-md:mx-auto">
-              <img src={headerLogo} alt="audiophile" />
+              <Link to="/" >
+                <img src={headerLogo} alt="audiophile" title="audiophile home page"/>
+              </Link>
             </div>
             <CategoryLinks />
           </div>

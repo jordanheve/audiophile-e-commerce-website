@@ -15,7 +15,7 @@ export default function Cart() {
   return (
     <div className="lg:basis-36 flex items-center justify-end">
         <Popover className="relative z-50">
-      <PopoverButton><ShoppingCartIcon className="h-6 w-6 text-white" /></PopoverButton>
+      <PopoverButton title="Open Shopping Cart"><ShoppingCartIcon className="h-6 w-6 text-white" /></PopoverButton>
         <PopoverBackdrop transition className="fixed inset-0 bg-black/30 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0" />
           <PopoverPanel transition className=" space-y-6 absolute right-0 max-sm:w-80 w-96 top-20 text-zinc-950 font-manrope ml-4 rounded-lg bg-white px-6 py-8 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
             {isEmpty ? (
