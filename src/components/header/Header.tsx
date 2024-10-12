@@ -13,7 +13,7 @@ export default function Header() {
         {deviceType !== "desktop" && <MenuCategories />}
         <h1 >
           <Link to="/" >
-            <img src={headerLogo} alt="audiophile" className="lg:basis-36" title="audiophile home page"/>
+            <img src={headerLogo} alt="audiophile" className="lg:basis-36" title="Audiophile Home Page"/>
           </Link>
         </h1>
         {deviceType == "desktop" && <CategoryLinks />}

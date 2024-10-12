@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="flex justify-between w-full flex-col gap-6 lg:flex-row">
             <div className="max-md:mx-auto">
               <Link to="/" >
-                <img src={headerLogo} alt="audiophile" title="audiophile home page"/>
+                <img src={headerLogo} alt="audiophile" title="Audiophile Home Page"/>
               </Link>
             </div>
             <CategoryLinks />
