@@ -26,7 +26,7 @@ This project is an e-commerce website for Audiophile where users can:
 
 This project helped me improve my TypeScript and React skills, particularly in handling form validation and state management for the shopping cart. I also gained more experience with Tailwind CSS for responsive design.
 
-- Live Site URL: [Live Site](https://https://jordanheve-audiophile.netlify.app/)
+- Live Site URL: [Live Site](https://jordanheve-audiophile.netlify.app)
 
 
 ### Full Website Screenshot
