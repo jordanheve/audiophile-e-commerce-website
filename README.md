@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# Audiophile E-commerce Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is an e-commerce website for Audiophile where users can:
 
-Currently, two official plugins are available:
+- View a responsive layout that adapts to different screen sizes.
+- See hover states for all interactive elements.
+- Add and remove products from the cart.
+- Edit product quantities in the cart.
+- Complete all checkout form fields with validation.
+- Receive error messages for missing or incorrect fields.
+- See accurate checkout totals, including:
+  - A fixed $50 shipping fee.
+  - VAT calculated at 20% of the product total, excluding shipping.
+- View an order confirmation modal with a summary of their purchase.
+- The cart content is saved even after refreshing the page (handled using `localStorage`).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies used
 
-## Expanding the ESLint configuration
+- Semantic HTML5
+- Tailwind CSS for styling
+- Flexbox & CSS Grid
+- Mobile-first design approach
+- React with TypeScript
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## What I learned
 
-- Configure the top-level `parserOptions` property like this:
+This project helped me improve my TypeScript and React skills, particularly in handling form validation and state management for the shopping cart. I also gained more experience with Tailwind CSS for responsive design.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Live Site URL: [Live Site](https://https://jordanheve-audiophile.netlify.app/-live-site-url.com)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+### Full Website Screenshot
+
+![](/public/screenshot.png)
+
+
+
+
